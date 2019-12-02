@@ -1,0 +1,17 @@
+TODO
+
+- prevent attacks:
+    - use HTTPS
+    - brute force attack: delay after 3 attempts (gradually increased), or use reCAPTCHA
+    - sql injection
+    - CORS
+    - CSRF
+    - password strength
+- database security: roles, users
+- table user: email, firstName, lastName
+- username is unique + exceptions
+- account expired
+- credentials expired
+- account lock/unlock
+- more roles to a user
+- a table for roles
