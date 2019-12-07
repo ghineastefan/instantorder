@@ -1,6 +1,7 @@
 package com.softdight.instantorder.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
@@ -14,6 +15,7 @@ public class RecipeIngredient {
 
     @Id
     @Column(name = "RECIPE_ID")
+    @JsonIgnore
     private String recipe;
 
     @Id
