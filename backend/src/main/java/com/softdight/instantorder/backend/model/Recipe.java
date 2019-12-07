@@ -1,10 +1,15 @@
 package com.softdight.instantorder.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -14,8 +19,6 @@ public class Recipe extends Descriptable {
     @Column(name = "COOK_TIME", columnDefinition = "SMALLINT(3) DEFAULT NULL")
     private Integer cookTime;
 
-//    @JoinColumn(name = "INGREDIENT_ID")
-//    @OneToMany(fetch = FetchType.LAZY)
-//    private List<Ingredient> ingredients = new ArrayList<>();
-    // TODO change this with a many to many table
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    private Set<RecipeIngredient> ingredients;
 }

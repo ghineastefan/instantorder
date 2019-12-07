@@ -2,16 +2,15 @@ package com.softdight.instantorder.backend.model;
 
 import jdk.jfr.Enabled;
 import lombok.Data;
-import javax.persistence.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import javax.validation.constraints.Size;
 
 @Data
 @Entity
 @Table(name = "BASE_ENTITY")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class BaseEntity {
 
     @Id

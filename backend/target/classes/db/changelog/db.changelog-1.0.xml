@@ -2,6 +2,7 @@
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
     <changeSet id="1" author="george">
         <sql>
             CREATE TABLE user (
@@ -29,8 +30,28 @@
         </rollback>
     </changeSet>
 
+    <changeSet id="3" author="george">
+        <sql>
+            CREATE TABLE DESCRIPTABLE (
+            id VARCHAR(36) default UUID(),
+            DESCRIPTION VARCHAR(150) default NULL,
+            CONSTRAINT PK_descriptable_id PRIMARY KEY (id)
+            );
+        </sql>
+        <rollback>
+            DROP TABLE BASE_ENTITY;
+        </rollback>
+    </changeSet>
+
     <changeSet author="george" id="menu_schema_changeSet" >
         <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/create_menu_schemaDLL.sql"/>
+        <rollback>
+            DROP SCHEMA MENU_SCHEMA;
+        </rollback>
+    </changeSet>
+
+    <changeSet author="george" id="menu_schema_data_changeSet" >
+        <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/menu_schema_data.sql"/>
         <rollback>
             DROP SCHEMA MENU_SCHEMA;
         </rollback>
