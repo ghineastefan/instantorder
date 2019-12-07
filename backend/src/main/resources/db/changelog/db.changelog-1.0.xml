@@ -17,4 +17,23 @@
             DROP TABLE user;
         </rollback>
     </changeSet>
+    <changeSet id="2" author="george">
+        <sql>
+            CREATE TABLE BASE_ENTITY (
+            id VARCHAR(36) default UUID(),
+            CONSTRAINT PK_id PRIMARY KEY (id)
+            );
+        </sql>
+        <rollback>
+            DROP TABLE BASE_ENTITY;
+        </rollback>
+    </changeSet>
+
+    <changeSet author="george" id="menu_schema_changeSet" >
+        <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/create_menu_schemaDLL.sql"/>
+        <rollback>
+            DROP SCHEMA MENU_SCHEMA;
+        </rollback>
+    </changeSet>
+
 </databaseChangeLog>

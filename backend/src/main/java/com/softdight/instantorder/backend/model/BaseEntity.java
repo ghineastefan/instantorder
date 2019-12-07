@@ -1,13 +1,18 @@
 package com.softdight.instantorder.backend.model;
 
+import jdk.jfr.Enabled;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 @Data
-public abstract class BaseEntity {
+@Entity
+@Table(name = "BASE_ENTITY")
+public class BaseEntity {
 
     @Id
     @Column(name = "ID", nullable = false, columnDefinition = "VARCHAR(36) default UUID()")

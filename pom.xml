@@ -9,10 +9,10 @@
     </modules>
 
     <groupId>com.mycompany</groupId>
-    <artifactId>auction</artifactId>
+    <artifactId>instantorder</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>auction</name>
-    <description>Auction application</description>
+    <name>instantorder</name>
+    <description>InstantOrder application</description>
 
 </project>

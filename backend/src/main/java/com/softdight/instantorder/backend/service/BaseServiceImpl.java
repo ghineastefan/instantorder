@@ -3,18 +3,17 @@ package com.softdight.instantorder.backend.service;
 import com.softdight.instantorder.backend.model.BaseEntity;
 import com.softdight.instantorder.backend.model.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
-public  class BaseServiceImpl<T extends BaseEntity> implements BaseService<T>{
+public abstract   class BaseServiceImpl<T extends BaseEntity> implements BaseService<T>{
 
-    @Autowired
-    private JpaRepository<T, String> baseRepo;
-
+    protected JpaRepository<T, String> baseRepo;
 
     @Override
     public T save(T e) {
