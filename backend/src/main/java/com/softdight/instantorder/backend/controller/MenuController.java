@@ -1,8 +1,10 @@
 package com.softdight.instantorder.backend.controller;
 
 import com.softdight.instantorder.backend.model.Recipe;
+import com.softdight.instantorder.backend.model.SubMenu;
 import com.softdight.instantorder.backend.service.IngredientService;
 import com.softdight.instantorder.backend.service.RecipeService;
+import com.softdight.instantorder.backend.service.SubMenuService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
@@ -27,6 +29,10 @@ public class MenuController {
     @Qualifier("recipeService")
     RecipeService recipeService;
 
+    @Autowired
+    @Qualifier("subMenuService")
+    SubMenuService subMenuService;
+
     @GetMapping("ingredient/find-all")
     public ResponseEntity<?> findAllIngredients() {
 
@@ -47,7 +53,13 @@ public class MenuController {
         return new ResponseEntity<>(recipeService.findById(recipeId), HttpStatus.OK);
     }
 
-
-
+    @GetMapping("submenu/find-all")
+    @ApiOperation(value = "returns all subMenus")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = SubMenu.class)
+    })
+    public ResponseEntity<?> findAllSubMenus(){
+        return new ResponseEntity<>(subMenuService.findAll(), HttpStatus.OK);
+    }
 
 }

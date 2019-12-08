@@ -99,4 +99,33 @@ INSERT INTO menu_schema.RECIPE_INGREDIENT VALUES("FRUIT SALAD","GRAPE",0.1);
 INSERT INTO menu_schema.RECIPE_INGREDIENT VALUES("FRUIT SALAD","PEAR",0.1);
 INSERT INTO menu_schema.RECIPE_INGREDIENT VALUES("FRUIT SALAD","WATERMELON",0.1);
 
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("MC Combo",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("PIZZA CLASSIC + Coke",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Burger Combo",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Christmas Burger",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("FRUIT SALAD + Water",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Breakfast + Coffe",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Christmas breakfast",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Shimps",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Chocolate cake",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Apple pie",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Onion rings",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Roast chicken",NULL);
+INSERT INTO menu_schema.submenu(ID,PATH_TO_PHOTO) VALUES("Mixed salad",NULL);
 
+update menu_schema.submenu set description = id;
+
+INSERT INTO menu_schema.CATEGORY VALUES ("BEEF");
+INSERT INTO menu_schema.CATEGORY VALUES ("PASTA");
+INSERT INTO menu_schema.CATEGORY VALUES ("FRUIT");
+INSERT INTO menu_schema.CATEGORY VALUES ("SAUCE");
+INSERT INTO menu_schema.CATEGORY VALUES ("PIZZA");
+INSERT INTO menu_schema.CATEGORY VALUES ("CHICKEN");
+INSERT INTO menu_schema.CATEGORY VALUES ("SOUP");
+INSERT INTO menu_schema.CATEGORY VALUES ("SEAFOOD");
+INSERT INTO menu_schema.CATEGORY VALUES ("SALAD");
+INSERT INTO menu_schema.CATEGORY VALUES ("DESSERT");
+INSERT INTO menu_schema.CATEGORY VALUES ("BURGER");
+
+INSERT INTO menu_schema.CATEGORY_SUBMENU VALUES("PIZZA","PIZZA CLASSIC + Coke");
+INSERT INTO menu_schema.CATEGORY_SUBMENU VALUES("BEEF","PIZZA CLASSIC + Coke");

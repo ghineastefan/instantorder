@@ -1,8 +1,10 @@
 com\softdight\instantorder\backend\model\Descriptable.class
 com\softdight\instantorder\backend\controller\MenuController.class
 com\softdight\instantorder\backend\controller\UserRestController.class
+com\softdight\instantorder\backend\repository\SubMenuRepository.class
 com\softdight\instantorder\backend\service\UserDetailsServiceImpl.class
 com\softdight\instantorder\backend\service\BaseService.class
+com\softdight\instantorder\backend\service\SubMenuServiceImpl.class
 com\softdight\instantorder\backend\service\BaseServiceImpl.class
 com\softdight\instantorder\backend\config\SecurityConfig$1.class
 com\softdight\instantorder\backend\exception\types\InstantOrderException.class
@@ -15,10 +17,12 @@ com\softdight\instantorder\backend\exception\ErrorResponse.class
 com\softdight\instantorder\backend\model\Role.class
 com\softdight\instantorder\backend\exception\CustomExceptionHandler.class
 com\softdight\instantorder\backend\model\User.class
+com\softdight\instantorder\backend\model\CategorySubMenuId.class
 com\softdight\instantorder\backend\jwt\JWTAuthorizationFilter.class
 com\softdight\instantorder\backend\aspect\LoggingAspectService.class
 com\softdight\instantorder\backend\model\StringResponse.class
 com\softdight\instantorder\backend\repository\BaseRepository.class
+com\softdight\instantorder\backend\model\CategorySubMenu.class
 com\softdight\instantorder\backend\model\Ingredient.class
 com\softdight\instantorder\backend\service\IngredientServiceImpl.class
 com\softdight\instantorder\backend\model\Recipe.class
@@ -29,6 +33,8 @@ com\softdight\instantorder\backend\config\SwaggerConfig.class
 com\softdight\instantorder\backend\model\SchemasEnum.class
 com\softdight\instantorder\backend\model\RecipeIngredientId.class
 com\softdight\instantorder\backend\repository\UserRepository.class
+com\softdight\instantorder\backend\service\SubMenuService.class
+com\softdight\instantorder\backend\model\Category.class
 com\softdight\instantorder\backend\controller\PublicRestController.class
 com\softdight\instantorder\backend\service\UserService.class
 com\softdight\instantorder\backend\model\QuantityType.class
@@ -39,3 +45,4 @@ com\softdight\instantorder\backend\model\RecipeIngredient.class
 com\softdight\instantorder\backend\model\BaseEntity.class
 com\softdight\instantorder\backend\repository\IngredientRepository.class
 com\softdight\instantorder\backend\service\RecipeServiceImpl.class
+com\softdight\instantorder\backend\model\SubMenu.class

@@ -24,5 +24,4 @@ public class RecipeIngredient {
 
     @Column(name = "QUANTITY")
     private Double quantity;
-
 }
