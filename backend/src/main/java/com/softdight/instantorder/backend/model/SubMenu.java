@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
@@ -20,5 +19,8 @@ public class SubMenu extends Descriptable{
     * Each submenu have one or more categories
     * */
     @OneToMany(mappedBy = "subMenu", cascade = CascadeType.ALL)
-    private Set<CategorySubMenu> categories;
+    private Set<SubCategorySubMenu> categories;
+
+    @OneToMany(mappedBy = "subMenu", cascade = CascadeType.ALL)
+    private Set<SubMenuRecipe> recipes;
 }
