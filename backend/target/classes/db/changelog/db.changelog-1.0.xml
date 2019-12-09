@@ -3,6 +3,15 @@
                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
+    <changeSet author="george" id="create_schemas_changeSet" >
+        <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/create_schemas.sql"/>
+        <rollback>
+            DROP schema auth;
+            drop schema menu_schema;
+            drop schema restaurant_schema;
+        </rollback>
+    </changeSet>
+
     <changeSet id="1" author="george">
         <sql>
             CREATE TABLE user (
@@ -54,6 +63,35 @@
         <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/menu_schema_data.sql"/>
         <rollback>
             DROP SCHEMA MENU_SCHEMA;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="restaurantTable" author="george">
+        <sql>
+            CREATE TABLE restaurant_schema.RESTAURANT_TYPE (
+            ID VARCHAR(36) default UUID(),
+            CONSTRAINT PK_RESTAURANT_TYPE_ID PRIMARY KEY (ID)
+            );
+
+            CREATE TABLE restaurant_schema.RESTAURANT (
+            ID VARCHAR(36) default UUID(),
+            DESCRIPTION VARCHAR(150) default NULL,
+            NAME VARCHAR(50) NOT NULL,
+            RESTAURANT_TYPE_ID VARCHAR(36) NOT NULL,
+            CONSTRAINT PK_RESTAURANT_ID PRIMARY KEY (ID),
+            CONSTRAINT FK_RESTAURANT_RESTAURANT_TYPE FOREIGN KEY (RESTAURANT_TYPE_ID) REFERENCES RESTAURANT_TYPE(ID)
+            );
+        </sql>
+        <rollback>
+            DROP TABLE restaurant_schema.RESTAURANT;
+            DROP TABLE restaurant_schema.RESTAURANT_TYPE;
+        </rollback>
+    </changeSet>
+
+    <changeSet author="george" id="restaurant_schema_data_changeSet" >
+        <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/restaurant_schema_data.sql"/>
+        <rollback>
+            DROP SCHEMA RESTAURANT_SCHEMA;
         </rollback>
     </changeSet>
 

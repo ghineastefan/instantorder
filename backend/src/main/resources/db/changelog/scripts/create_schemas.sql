@@ -1,0 +1,3 @@
+CREATE SCHEMA  IF NOT EXISTS `auth`;
+CREATE SCHEMA  IF NOT EXISTS `menu_schema`;
+CREATE SCHEMA  IF NOT EXISTS `restaurant_schema`;
