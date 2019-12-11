@@ -1,7 +1,15 @@
 package com.softdight.instantorder.backend.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-public enum MenuType {
-    DAY_MENU, // EVERY DAY BETWEEN {START_DATE} and {END_DATE}
-    PERIOD_MENU // FROM {START_DATE} to {END_DATE}
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@EqualsAndHashCode(callSuper = true)
+@Data
+@Entity
+@Table(name = "MENU_TYPE", catalog = "MENU_SCHEMA")
+public class MenuType extends Descriptable{
+
 }

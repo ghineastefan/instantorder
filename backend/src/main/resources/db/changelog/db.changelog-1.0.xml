@@ -81,17 +81,40 @@
             CONSTRAINT PK_RESTAURANT_ID PRIMARY KEY (ID),
             CONSTRAINT FK_RESTAURANT_RESTAURANT_TYPE FOREIGN KEY (RESTAURANT_TYPE_ID) REFERENCES RESTAURANT_TYPE(ID)
             );
+
         </sql>
         <rollback>
-            DROP TABLE restaurant_schema.RESTAURANT;
-            DROP TABLE restaurant_schema.RESTAURANT_TYPE;
+            DROP SCHEMA restaurant_schema;
         </rollback>
     </changeSet>
 
     <changeSet author="george" id="restaurant_schema_data_changeSet" >
         <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/restaurant_schema_data.sql"/>
         <rollback>
-            DROP SCHEMA RESTAURANT_SCHEMA;
+            DELETE FROM restaurant_schema.RESTAURANT;
+            DELETE FROM restaurant_schema.RESTAURANT_TYPE;
+        </rollback>
+    </changeSet>
+
+    <changeSet id="menu_table" author="george">
+        <sql>
+            CREATE TABLE menu_schema.MENU (
+            ID VARCHAR(36) PRIMARY KEY,
+            DESCRIPTION VARCHAR(100),
+            MENU_TYPE_ID VARCHAR(36) NOT NULL,
+            CONSTRAINT FK_MENU_MENU_TYPE FOREIGN KEY (MENU_TYPE_ID) REFERENCES MENU_TYPE(ID)
+            );
+
+            INSERT INTO menu_schema.MENU VALUES("Menu of the day","Menu of the day","DAY_MENU");
+            INSERT INTO menu_schema.MENU VALUES("Menu of the Chrismas","Menu of the Chrismas","PERIOD_MENU");
+            INSERT INTO menu_schema.MENU VALUES("The magic soup","The magic soup","SOUP_OF_THE_DAY");
+            INSERT INTO menu_schema.MENU VALUES("Do not miss the offer of the day","Do not miss the offert offer of the day","CATCH_OF_THE_DAY");
+            INSERT INTO menu_schema.MENU VALUES("Only Tuesday","Only Tuesday","TUESDAY_MENU");
+            INSERT INTO menu_schema.MENU VALUES("Only Wednesday","Only Wednesday","WEDNESDAY_MENU");
+            INSERT INTO menu_schema.MENU VALUES(7,"Only on weekends","WEEKEND_MENU");
+        </sql>
+        <rollback>
+            DROP TABLE menu_schema.MENU;
         </rollback>
     </changeSet>
 

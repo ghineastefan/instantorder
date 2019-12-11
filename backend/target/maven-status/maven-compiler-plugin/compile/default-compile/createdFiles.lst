@@ -1,5 +1,6 @@
 com\softdight\instantorder\backend\model\Descriptable.class
 com\softdight\instantorder\backend\controller\MenuController.class
+com\softdight\instantorder\backend\service\MenuService.class
 com\softdight\instantorder\backend\controller\UserRestController.class
 com\softdight\instantorder\backend\repository\SubMenuRepository.class
 com\softdight\instantorder\backend\service\UserDetailsServiceImpl.class
@@ -19,6 +20,7 @@ com\softdight\instantorder\backend\model\SubMenuRecipeId.class
 com\softdight\instantorder\backend\service\UserServiceImpl.class
 com\softdight\instantorder\backend\exception\ErrorResponse.class
 com\softdight\instantorder\backend\model\Restaurant.class
+com\softdight\instantorder\backend\repository\MenuRepository.class
 com\softdight\instantorder\backend\model\Role.class
 com\softdight\instantorder\backend\exception\CustomExceptionHandler.class
 com\softdight\instantorder\backend\model\User.class
@@ -31,6 +33,7 @@ com\softdight\instantorder\backend\model\Ingredient.class
 com\softdight\instantorder\backend\service\IngredientServiceImpl.class
 com\softdight\instantorder\backend\model\Recipe.class
 com\softdight\instantorder\backend\service\IngredientService.class
+com\softdight\instantorder\backend\service\MenuServiceImpl.class
 com\softdight\instantorder\backend\model\SubCategorySubMenu.class
 com\softdight\instantorder\backend\aspect\annotation\Log.class
 com\softdight\instantorder\backend\model\MenuType.class
@@ -49,6 +52,7 @@ com\softdight\instantorder\backend\service\RestaurantService.class
 com\softdight\instantorder\backend\repository\RecipeRepository.class
 com\softdight\instantorder\backend\service\RecipeService.class
 com\softdight\instantorder\backend\model\RecipeIngredient.class
+com\softdight\instantorder\backend\model\Menu.class
 com\softdight\instantorder\backend\model\SubCategorySubMenuId.class
 com\softdight\instantorder\backend\model\BaseEntity.class
 com\softdight\instantorder\backend\repository\IngredientRepository.class
