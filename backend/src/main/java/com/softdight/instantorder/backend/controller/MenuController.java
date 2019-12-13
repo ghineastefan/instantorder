@@ -87,5 +87,4 @@ public class MenuController {
         return new ResponseEntity<>(menuService.findAllByRestaurantId(restaurantId), HttpStatus.OK);
     }
 
-
 }

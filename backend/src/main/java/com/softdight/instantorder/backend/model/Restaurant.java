@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -21,5 +22,6 @@ public class Restaurant extends Descriptable {
     @JoinColumn(name = "RESTAURANT_TYPE_ID", referencedColumnName = "ID")
     private RestaurantType restaurantTypeId;
 
-
+    @OneToMany(mappedBy = "restaurant")
+    private Set<RestaurantTable> restaurantTables;
 }

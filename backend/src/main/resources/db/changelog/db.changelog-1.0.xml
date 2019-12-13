@@ -82,9 +82,17 @@
             CONSTRAINT FK_RESTAURANT_RESTAURANT_TYPE FOREIGN KEY (RESTAURANT_TYPE_ID) REFERENCES RESTAURANT_TYPE(ID)
             );
 
+            CREATE TABLE restaurant_schema.RESTAURANT_TABLE(
+            ID VARCHAR(36) default UUID() PRIMARY KEY,
+            IDENTIFIER_ID VARCHAR(5) NOT NULL,
+            RESTAURANT_ID VARCHAR(36) NOT NULL,
+            CONSTRAINT FK_RESTAURANT_ID FOREIGN KEY (RESTAURANT_ID) REFERENCES RESTAURANT(ID),
+            CONSTRAINT UNIQUE_IDENTIFIER_RESTAURANT_ID UNIQUE (IDENTIFIER_ID,RESTAURANT_ID)
+            );
+
         </sql>
         <rollback>
-            DROP SCHEMA restaurant_schema;
+            DROP SCHEMA restaurant_schema.RESTAURANT_TABLE;
         </rollback>
     </changeSet>
 
