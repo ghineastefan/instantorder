@@ -102,16 +102,18 @@
             ID VARCHAR(36) PRIMARY KEY,
             DESCRIPTION VARCHAR(100),
             MENU_TYPE_ID VARCHAR(36) NOT NULL,
-            CONSTRAINT FK_MENU_MENU_TYPE FOREIGN KEY (MENU_TYPE_ID) REFERENCES MENU_TYPE(ID)
+            RESTAURANT_ID VARCHAR(36),
+            CONSTRAINT FK_MENU_MENU_TYPE FOREIGN KEY (MENU_TYPE_ID) REFERENCES MENU_TYPE(ID),
+            CONSTRAINT FK_MENU_RESTAURANT FOREIGN KEY (RESTAURANT_ID) REFERENCES restaurant_schema.RESTAURANT(ID)
             );
 
-            INSERT INTO menu_schema.MENU VALUES("Menu of the day","Menu of the day","DAY_MENU");
-            INSERT INTO menu_schema.MENU VALUES("Menu of the Chrismas","Menu of the Chrismas","PERIOD_MENU");
-            INSERT INTO menu_schema.MENU VALUES("The magic soup","The magic soup","SOUP_OF_THE_DAY");
-            INSERT INTO menu_schema.MENU VALUES("Do not miss the offer of the day","Do not miss the offert offer of the day","CATCH_OF_THE_DAY");
-            INSERT INTO menu_schema.MENU VALUES("Only Tuesday","Only Tuesday","TUESDAY_MENU");
-            INSERT INTO menu_schema.MENU VALUES("Only Wednesday","Only Wednesday","WEDNESDAY_MENU");
-            INSERT INTO menu_schema.MENU VALUES(7,"Only on weekends","WEEKEND_MENU");
+            INSERT INTO menu_schema.MENU VALUES("Menu of the day","Menu of the day","DAY_MENU","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU VALUES("Menu of the Chrismas","Menu of the Chrismas","PERIOD_MENU","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU VALUES("The magic soup","The magic soup","SOUP_OF_THE_DAY","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU VALUES("Do not miss the offer of the day","Do not miss the offert offer of the day","CATCH_OF_THE_DAY","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU VALUES("Only Tuesday","Only Tuesday","TUESDAY_MENU","Beraria H");
+            INSERT INTO menu_schema.MENU VALUES("Only Wednesday","Only Wednesday","WEDNESDAY_MENU","Beraria H");
+            INSERT INTO menu_schema.MENU VALUES(7,"Only on weekends","WEEKEND_MENU","Beraria H");
 
             CREATE TABLE menu_schema.MENU_SUBMENU(
             MENU_ID VARCHAR(36) NOT NULL,

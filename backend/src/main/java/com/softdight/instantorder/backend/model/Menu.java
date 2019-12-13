@@ -18,6 +18,11 @@ public class Menu extends Descriptable {
     @JoinColumn(name = "MENU_TYPE_ID", referencedColumnName = "ID")
     private MenuType menuTypeId;
 
+    @NotNull
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "RESTAURANT_ID", referencedColumnName = "ID")
+    private Restaurant restaurant;
+
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private Set<MenuSubMenu> subMenus;
 }
