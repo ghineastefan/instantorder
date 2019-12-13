@@ -69,7 +69,7 @@ public class MenuController {
         return new ResponseEntity<>(subMenuService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("menu/find-all")
+    @GetMapping("find-all")
     @ApiOperation(value = "returns all Menus")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK", response = Menu.class)
@@ -77,4 +77,15 @@ public class MenuController {
     public ResponseEntity<?> findAllMenus(){
         return new ResponseEntity<>(menuService.findAll(), HttpStatus.OK);
     }
+
+    @GetMapping("find-all-by-restaurant")
+    @ApiOperation(value = "returns all Menus")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK", response = Menu.class)
+    })
+    public ResponseEntity<?> findAllMenusByRestaurant(@ApiParam(example = "Osteria Sempre Buono") @RequestParam String restaurantId){
+        return new ResponseEntity<>(menuService.findAllByRestaurantId(restaurantId), HttpStatus.OK);
+    }
+
+
 }

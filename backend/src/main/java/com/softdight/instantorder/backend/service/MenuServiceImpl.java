@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service("menuServiceImpl")
 @Transactional
@@ -20,5 +21,10 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
     public MenuServiceImpl(MenuRepository menuRepository){
         this.menuRepository = menuRepository;
         this.baseRepo = menuRepository;
+    }
+
+    @Override
+    public List<Menu> findAllByRestaurantId(String restaurantId) {
+        return menuRepository.findAllByRestaurantId(restaurantId);
     }
 }
