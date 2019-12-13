@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -16,4 +17,7 @@ public class Menu extends Descriptable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "MENU_TYPE_ID", referencedColumnName = "ID")
     private MenuType menuTypeId;
+
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    private Set<MenuSubMenu> subMenus;
 }

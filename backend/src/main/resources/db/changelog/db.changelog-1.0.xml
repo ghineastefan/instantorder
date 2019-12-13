@@ -112,8 +112,27 @@
             INSERT INTO menu_schema.MENU VALUES("Only Tuesday","Only Tuesday","TUESDAY_MENU");
             INSERT INTO menu_schema.MENU VALUES("Only Wednesday","Only Wednesday","WEDNESDAY_MENU");
             INSERT INTO menu_schema.MENU VALUES(7,"Only on weekends","WEEKEND_MENU");
+
+            CREATE TABLE menu_schema.MENU_SUBMENU(
+            MENU_ID VARCHAR(36) NOT NULL,
+            SUBMENU_ID VARCHAR(36) NOT NULL,
+            PRICE DECIMAL(7,2) DEFAULT 0,
+            ON_SALE DECIMAL(7,2) DEFAULT NULL CHECK(ON_SALE >= PRICE),
+            UNIQUE KEY MENU_SUBMENU_ID (SUBMENU_ID,MENU_ID),
+            CONSTRAINT FK_MENU_SUBMENU FOREIGN KEY (MENU_ID) REFERENCES MENU(ID),
+            CONSTRAINT FK_SUBMENU_SUBMENU FOREIGN KEY (SUBMENU_ID) REFERENCES SUBMENU(ID)
+            );
+
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the day","Burger Combo",10,12);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the day","Breakfast + Coffe",9,12);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the Chrismas","Burger Combo",7,12);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the Chrismas","Breakfast + Coffe",13,14);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Only Wednesday","Burger Combo",16,NULL);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("The magic soup","Burger Combo",17,NULL);
+
         </sql>
         <rollback>
+            DROP TABLE menu_schema.MENU_SUBMENU;
             DROP TABLE menu_schema.MENU;
         </rollback>
     </changeSet>

@@ -20,4 +20,6 @@ public class Restaurant extends Descriptable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "RESTAURANT_TYPE_ID", referencedColumnName = "ID")
     private RestaurantType restaurantTypeId;
+
+
 }
