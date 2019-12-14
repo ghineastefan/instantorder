@@ -82,9 +82,17 @@
             CONSTRAINT FK_RESTAURANT_RESTAURANT_TYPE FOREIGN KEY (RESTAURANT_TYPE_ID) REFERENCES RESTAURANT_TYPE(ID)
             );
 
+            CREATE TABLE restaurant_schema.RESTAURANT_TABLE(
+            ID VARCHAR(36) default UUID() PRIMARY KEY,
+            IDENTIFIER_ID VARCHAR(5) NOT NULL,
+            RESTAURANT_ID VARCHAR(36) NOT NULL,
+            CONSTRAINT FK_RESTAURANT_ID FOREIGN KEY (RESTAURANT_ID) REFERENCES RESTAURANT(ID),
+            CONSTRAINT UNIQUE_IDENTIFIER_RESTAURANT_ID UNIQUE (IDENTIFIER_ID,RESTAURANT_ID)
+            );
+
         </sql>
         <rollback>
-            DROP SCHEMA restaurant_schema;
+            DROP SCHEMA restaurant_schema.RESTAURANT_TABLE;
         </rollback>
     </changeSet>
 
@@ -102,18 +110,41 @@
             ID VARCHAR(36) PRIMARY KEY,
             DESCRIPTION VARCHAR(100),
             MENU_TYPE_ID VARCHAR(36) NOT NULL,
-            CONSTRAINT FK_MENU_MENU_TYPE FOREIGN KEY (MENU_TYPE_ID) REFERENCES MENU_TYPE(ID)
+            RESTAURANT_ID VARCHAR(36),
+            CONSTRAINT FK_MENU_MENU_TYPE FOREIGN KEY (MENU_TYPE_ID) REFERENCES MENU_TYPE(ID),
+            CONSTRAINT FK_MENU_RESTAURANT FOREIGN KEY (RESTAURANT_ID) REFERENCES restaurant_schema.RESTAURANT(ID)
             );
 
-            INSERT INTO menu_schema.MENU VALUES("Menu of the day","Menu of the day","DAY_MENU");
-            INSERT INTO menu_schema.MENU VALUES("Menu of the Chrismas","Menu of the Chrismas","PERIOD_MENU");
-            INSERT INTO menu_schema.MENU VALUES("The magic soup","The magic soup","SOUP_OF_THE_DAY");
-            INSERT INTO menu_schema.MENU VALUES("Do not miss the offer of the day","Do not miss the offert offer of the day","CATCH_OF_THE_DAY");
-            INSERT INTO menu_schema.MENU VALUES("Only Tuesday","Only Tuesday","TUESDAY_MENU");
-            INSERT INTO menu_schema.MENU VALUES("Only Wednesday","Only Wednesday","WEDNESDAY_MENU");
-            INSERT INTO menu_schema.MENU VALUES(7,"Only on weekends","WEEKEND_MENU");
+            CREATE INDEX menu_restaurant_index ON menu_schema.MENU (RESTAURANT_ID);
+
+            INSERT INTO menu_schema.MENU VALUES("Menu of the day","Menu of the day","DAY_MENU","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU VALUES("Menu of the Chrismas","Menu of the Chrismas","PERIOD_MENU","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU VALUES("The magic soup","The magic soup","SOUP_OF_THE_DAY","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU VALUES("Do not miss the offer of the day","Do not miss the offert offer of the day","CATCH_OF_THE_DAY","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU VALUES("Only Tuesday","Only Tuesday","TUESDAY_MENU","Beraria H");
+            INSERT INTO menu_schema.MENU VALUES("Only Wednesday","Only Wednesday","WEDNESDAY_MENU","Beraria H");
+            INSERT INTO menu_schema.MENU VALUES(7,"Only on weekends","WEEKEND_MENU","Beraria H");
+
+            CREATE TABLE menu_schema.MENU_SUBMENU(
+            MENU_ID VARCHAR(36) NOT NULL,
+            SUBMENU_ID VARCHAR(36) NOT NULL,
+            PRICE DECIMAL(7,2) DEFAULT 0,
+            ON_SALE DECIMAL(7,2) DEFAULT NULL CHECK(ON_SALE >= PRICE),
+            UNIQUE KEY MENU_SUBMENU_ID (SUBMENU_ID,MENU_ID),
+            CONSTRAINT FK_MENU_SUBMENU FOREIGN KEY (MENU_ID) REFERENCES MENU(ID),
+            CONSTRAINT FK_SUBMENU_SUBMENU FOREIGN KEY (SUBMENU_ID) REFERENCES SUBMENU(ID)
+            );
+
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the day","Burger Combo",10,12);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the day","Breakfast + Coffe",9,12);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the Chrismas","Burger Combo",7,12);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the Chrismas","Breakfast + Coffe",13,14);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Only Wednesday","Burger Combo",16,NULL);
+            INSERT INTO menu_schema.MENU_SUBMENU VALUES("The magic soup","Burger Combo",17,NULL);
+
         </sql>
         <rollback>
+            DROP TABLE menu_schema.MENU_SUBMENU;
             DROP TABLE menu_schema.MENU;
         </rollback>
     </changeSet>

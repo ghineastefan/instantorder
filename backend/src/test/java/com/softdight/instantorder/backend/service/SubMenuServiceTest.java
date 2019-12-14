@@ -48,19 +48,6 @@ public class SubMenuServiceTest {
         SubMenu subMenu2 = new SubMenu();
         SubMenu subMenu3 = new SubMenu();
 
-        subMenu1.setId("id1");
-        subMenu1.setDescription("description1");
-        subMenu1.setPathToPhoto("path1");
-
-        subMenu2.setId("id2");
-        subMenu2.setDescription("description2");
-        subMenu2.setPathToPhoto("path2");
-
-        subMenu3.setId("id3");
-        subMenu3.setDescription("description3");
-        subMenu3.setPathToPhoto("path3");
-
-
         list.add(subMenu1);
         list.add(subMenu2);
         list.add(subMenu3);

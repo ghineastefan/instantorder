@@ -17,6 +17,7 @@ C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backen
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\service\MenuServiceImpl.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\service\IngredientService.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\RestaurantType.java
+C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\MenuSubMenuId.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\config\SecurityConfig.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\BaseEntity.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\repository\MenuRepository.java
@@ -42,12 +43,14 @@ C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backen
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\repository\RecipeRepository.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\controller\UserRestController.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\repository\UserRepository.java
+C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\MenuSubMenu.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\StringResponse.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\Category.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\SubCategorySubMenuId.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\RecipeIngredientId.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\aspect\LoggingAspectService.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\service\RestaurantService.java
+C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\RestaurantTable.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\model\SubCategorySubMenu.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\jwt\JwtTokenProvider.java
 C:\business\InstantOrder\backend\src\main\java\com\softdight\instantorder\backend\service\RecipeServiceImpl.java
