@@ -14,7 +14,7 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        MenuId.text = menuDataModel.Id;
+        MenuId.text = menuDataModel.id;
         DescriptionMenu.text = menuDataModel.Description;
 
         for(int i = 0; i < menuDataModel.SubMenuPrices.Count; i ++)

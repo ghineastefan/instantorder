@@ -63,10 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AdminManager.cs" />
     <Compile Include="Assets\Scripts\DataModel\EntityBaseModel.cs" />
     <Compile Include="Assets\Scripts\DataModel\IDescriptable.cs" />
     <Compile Include="Assets\Scripts\DataModel\Ingredient.cs" />
     <Compile Include="Assets\Scripts\DataModel\IQuantificable.cs" />
+    <Compile Include="Assets\Scripts\DataModel\JsonHelper.cs" />
     <Compile Include="Assets\Scripts\DataModel\Menu.cs" />
     <Compile Include="Assets\Scripts\DataModel\OptionalRecipe.cs" />
     <Compile Include="Assets\Scripts\DataModel\RandomDataModelGenerator.cs" />
@@ -90,41 +92,43 @@
     <Compile Include="Assets\Scripts\QRModule\Scripts\Webcam\UnityWebcam.cs" />
     <Compile Include="Assets\Scripts\QRScanner.cs" />
     <Compile Include="Assets\Scripts\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\WebConsumers\BaseConsumer.cs" />
+    <Compile Include="Assets\Scripts\WebConsumers\RestaurantConsumer.cs" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro.Editor">
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline">
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.CollabProxy.Editor">
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Analytics.DataPrivacy">
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -304,16 +308,16 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="zxing.unity">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Assets/Scripts/QRModule/Scripts/zxing.unity.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Assets/Scripts/QRModule/Scripts/zxing.unity.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/business/VirtualWaiter/Frontend/App/VirtualWaiter/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/business/InstantOrder/Frontend/App/VirtualWaiter/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.13f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>

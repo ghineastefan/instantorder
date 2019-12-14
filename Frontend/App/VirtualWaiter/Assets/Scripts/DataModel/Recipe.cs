@@ -10,7 +10,7 @@ public class Recipe : EntityBaseModel, IDescriptable {
 
     public Recipe(string id, string description, int cookTime, List<IngredientQuantity> ingredientQuantities)
     {
-        Id = id;
+        base.id = id;
         Description = description;
         CookTime = cookTime;
         IngredientQuantities = ingredientQuantities;

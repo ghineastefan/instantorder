@@ -8,7 +8,7 @@ public class Menu : EntityBaseModel {
 
     public Menu(string id, string description, List<SubMenuPrice> subMenuPrices)
     {
-        Id = id;
+        base.id = id;
         Description = description;
         SubMenuPrices = subMenuPrices;
     }

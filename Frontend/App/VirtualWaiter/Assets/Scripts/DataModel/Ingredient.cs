@@ -8,7 +8,7 @@ public class Ingredient : EntityBaseModel {
 
     public Ingredient(string id, string quantityType)
     {
-        Id = id;
+        base.id = id;
         QuantityType = quantityType;
     }
 }

@@ -16,7 +16,7 @@ public class SubMenu : EntityBaseModel {
 
     public SubMenu(string id, string pathToPhoto, List<Recipe> recipes) : this()
     {
-        Id = id;
+        base.id = id;
         Recipes = new List<Recipe>();
         PathToPhoto = pathToPhoto;
         OptionalRecipes = new List<OptionalRecipe>();
@@ -24,7 +24,7 @@ public class SubMenu : EntityBaseModel {
 
     public SubMenu(string id, string pathToPhoto, List<Recipe> recipes, List<OptionalRecipe> optionalRecipes)
     {
-        Id = id;
+        base.id = id;
         Recipes = recipes;
         PathToPhoto = pathToPhoto;
         OptionalRecipes = optionalRecipes;
