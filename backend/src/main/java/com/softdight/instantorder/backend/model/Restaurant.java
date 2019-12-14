@@ -1,10 +1,17 @@
 package com.softdight.instantorder.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @EqualsAndHashCode(callSuper = true)
@@ -22,6 +29,7 @@ public class Restaurant extends Descriptable {
     @JoinColumn(name = "RESTAURANT_TYPE_ID", referencedColumnName = "ID")
     private RestaurantType restaurantTypeId;
 
-    @OneToMany(mappedBy = "restaurant")
-    private Set<RestaurantTable> restaurantTables;
+    @OneToMany(mappedBy = "restaurant", orphanRemoval = true)
+    @JsonManagedReference
+    private List<RestaurantTable> restaurantTables = new ArrayList<RestaurantTable>();
 }
