@@ -1,5 +1,6 @@
 package com.softdight.instantorder.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -19,7 +20,8 @@ public class Menu extends Descriptable {
     private MenuType menuTypeId;
 
     @NotNull
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "RESTAURANT_ID", referencedColumnName = "ID")
     private Restaurant restaurant;
 
