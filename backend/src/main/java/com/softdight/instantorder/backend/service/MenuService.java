@@ -7,4 +7,5 @@ import java.util.List;
 public interface MenuService extends BaseService<Menu>{
 
     List<Menu> findAllByRestaurantId(String restaurantId);
+
 }

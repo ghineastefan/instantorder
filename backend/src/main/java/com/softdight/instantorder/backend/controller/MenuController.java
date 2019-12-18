@@ -94,7 +94,7 @@ public class MenuController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK", response = Menu.class)
     })
-    public ResponseEntity<?> addMenuToRestaurant(@ApiParam(example = "Osteria Sempre Buono") @RequestParam String restaurantId){
+    public ResponseEntity<?> addMenuToRestaurant(@ApiParam(example = "Osteria Sempre Buono") @RequestParam String restaurantId, @RequestBody Menu menu){
         // TODO secure this endpoint
 
         Optional<Restaurant> restaurantResource = restaurantService.findById(restaurantId);
@@ -103,9 +103,15 @@ public class MenuController {
             return new ResponseEntity<>("No restaurant with that id",HttpStatus.BAD_REQUEST);
         }
 
-        Restaurant restaurant = restaurantResource.get();
+        menu.setRestaurant(restaurantResource.get());
 
-        return new ResponseEntity<>(menuService.findAllByRestaurantId(restaurantId), HttpStatus.OK);
+        if(!menuService.findById(menu.getId()).isEmpty()){
+            return new ResponseEntity<>("That menu id already exist in the database",HttpStatus.BAD_REQUEST);
+        }
+
+        menuService.save(menu);
+
+        return new ResponseEntity<>("Menu added", HttpStatus.OK);
     }
 
 

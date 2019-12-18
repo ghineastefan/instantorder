@@ -21,7 +21,7 @@ public class Menu extends Descriptable {
 
     @NotNull
     @JsonIgnore
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "RESTAURANT_ID", referencedColumnName = "ID")
     private Restaurant restaurant;
 

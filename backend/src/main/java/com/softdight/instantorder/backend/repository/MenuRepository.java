@@ -9,4 +9,5 @@ import java.util.List;
 public interface MenuRepository extends JpaRepository<Menu, String> {
 
     List<Menu> findAllByRestaurantId(String restaurantId);
+
 }
