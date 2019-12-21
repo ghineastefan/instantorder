@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service("restaurantServiceImpl")
 @Transactional
@@ -19,5 +20,10 @@ public class RestaurantServiceImpl extends BaseServiceImpl<Restaurant> implement
     public RestaurantServiceImpl(RestaurantRepository restaurantRepository){
         this.restaurantRepository = restaurantRepository;
         this.baseRepo = restaurantRepository;
+    }
+
+    @Override
+    public Optional<Restaurant> findByUserId(Long l) {
+        return restaurantRepository.findByUserId(l);
     }
 }

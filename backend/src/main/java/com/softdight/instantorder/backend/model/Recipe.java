@@ -1,14 +1,15 @@
 package com.softdight.instantorder.backend.model;
 
 import lombok.Data;
-
+import lombok.EqualsAndHashCode;
 import javax.persistence.*;
 import java.util.Set;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "RECIPE", schema = "MENU_SCHEMA")
-public class Recipe extends Descriptable {
+@Table(name = "RECIPE", catalog = "MENU_SCHEMA")
+public class Recipe extends RestaurantDependent {
 
     @Column(name = "COOK_TIME", columnDefinition = "SMALLINT(3) DEFAULT NULL")
     private Integer cookTime;

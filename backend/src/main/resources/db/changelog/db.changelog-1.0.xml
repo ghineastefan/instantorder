@@ -20,9 +20,11 @@
             password VARCHAR(255) NOT NULL,
             name VARCHAR(255) NOT NULL,
             role VARCHAR(255) NOT NULL,
-            CONSTRAINT PK_id PRIMARY KEY (id)
+            CONSTRAINT PK_id PRIMARY KEY (id),
+            UNIQUE KEY(username)
             );
 
+            INSERT INTO auth.USER(USERNAME,PASSWORD,NAME,ROLE) VALUES("georgeo4567@gmail.com","$2a$10$PvMY9Slbop/qa3x2r0lpmeQ1L2YsV7UDDACm80y3czHmE1BNjrE9e","George","ADMIN");
         </sql>
         <rollback>
             DROP TABLE user;
@@ -50,20 +52,6 @@
         </sql>
         <rollback>
             DROP TABLE BASE_ENTITY;
-        </rollback>
-    </changeSet>
-
-    <changeSet author="george" id="menu_schema_changeSet" >
-        <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/create_menu_schemaDLL.sql"/>
-        <rollback>
-            DROP SCHEMA MENU_SCHEMA;
-        </rollback>
-    </changeSet>
-
-    <changeSet author="george" id="menu_schema_data_changeSet" >
-        <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/menu_schema_data.sql"/>
-        <rollback>
-            DROP SCHEMA MENU_SCHEMA;
         </rollback>
     </changeSet>
 
@@ -96,7 +84,7 @@
 
         </sql>
         <rollback>
-            DROP SCHEMA restaurant_schema.RESTAURANT_TABLE;
+            DROP SCHEMA restaurant_schema;
         </rollback>
     </changeSet>
 
@@ -108,10 +96,26 @@
         </rollback>
     </changeSet>
 
+
+    <changeSet author="george" id="menu_schema_changeSet" >
+        <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/create_menu_schemaDLL.sql"/>
+        <rollback>
+            DROP SCHEMA MENU_SCHEMA;
+        </rollback>
+    </changeSet>
+
+    <changeSet author="george" id="menu_schema_data_changeSet" >
+        <sqlFile relativeToChangelogFile="true" encoding="utf8" path="scripts/menu_schema_data.sql"/>
+        <rollback>
+            DROP SCHEMA MENU_SCHEMA;
+        </rollback>
+    </changeSet>
+
     <changeSet id="menu_table" author="george">
         <sql>
             CREATE TABLE menu_schema.MENU (
-            ID VARCHAR(36) PRIMARY KEY,
+            ID VARCHAR(36) PRIMARY KEY default UUID(),
+            NAME VARCHAR(36) NOT NULL,
             DESCRIPTION VARCHAR(100),
             MENU_TYPE_ID VARCHAR(36) NOT NULL,
             RESTAURANT_ID VARCHAR(36),
@@ -121,13 +125,13 @@
 
             CREATE INDEX menu_restaurant_index ON menu_schema.MENU (RESTAURANT_ID);
 
-            INSERT INTO menu_schema.MENU VALUES("Menu of the day","Menu of the day","DAY_MENU","Osteria Sempre Buono");
-            INSERT INTO menu_schema.MENU VALUES("Menu of the Chrismas","Menu of the Chrismas","PERIOD_MENU","Osteria Sempre Buono");
-            INSERT INTO menu_schema.MENU VALUES("The magic soup","The magic soup","SOUP_OF_THE_DAY","Osteria Sempre Buono");
-            INSERT INTO menu_schema.MENU VALUES("Do not miss the offer of the day","Do not miss the offert offer of the day","CATCH_OF_THE_DAY","Osteria Sempre Buono");
-            INSERT INTO menu_schema.MENU VALUES("Only Tuesday","Only Tuesday","TUESDAY_MENU","Beraria H");
-            INSERT INTO menu_schema.MENU VALUES("Only Wednesday","Only Wednesday","WEDNESDAY_MENU","Beraria H");
-            INSERT INTO menu_schema.MENU VALUES(7,"Only on weekends","WEEKEND_MENU","Beraria H");
+            INSERT INTO menu_schema.MENU (NAME,DESCRIPTION,MENU_TYPE_ID, RESTAURANT_ID) VALUES("Menu of the day","Menu of the day","DAY_MENU","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU (NAME,DESCRIPTION,MENU_TYPE_ID, RESTAURANT_ID) VALUES("Menu of the Chrismas","Menu of the Chrismas","PERIOD_MENU","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU (NAME,DESCRIPTION,MENU_TYPE_ID, RESTAURANT_ID) VALUES("The magic soup","The magic soup","SOUP_OF_THE_DAY","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU (NAME,DESCRIPTION,MENU_TYPE_ID, RESTAURANT_ID) VALUES("Do not miss the offer of the day","Do not miss the offert offer of the day","CATCH_OF_THE_DAY","Osteria Sempre Buono");
+            INSERT INTO menu_schema.MENU (NAME,DESCRIPTION,MENU_TYPE_ID, RESTAURANT_ID) VALUES("Only Tuesday","Only Tuesday","TUESDAY_MENU","Beraria H");
+            INSERT INTO menu_schema.MENU (NAME,DESCRIPTION,MENU_TYPE_ID, RESTAURANT_ID) VALUES("Only Wednesday","Only Wednesday","WEDNESDAY_MENU","Beraria H");
+            INSERT INTO menu_schema.MENU (NAME,DESCRIPTION,MENU_TYPE_ID, RESTAURANT_ID) VALUES(7,"Only on weekends","WEEKEND_MENU","Beraria H");
 
             CREATE TABLE menu_schema.MENU_SUBMENU(
             MENU_ID VARCHAR(36) NOT NULL,
@@ -139,12 +143,12 @@
             CONSTRAINT FK_SUBMENU_SUBMENU FOREIGN KEY (SUBMENU_ID) REFERENCES SUBMENU(ID)
             );
 
-            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the day","Burger Combo",10,12);
-            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the day","Breakfast + Coffe",9,12);
-            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the Chrismas","Burger Combo",7,12);
-            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the Chrismas","Breakfast + Coffe",13,14);
-            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Only Wednesday","Burger Combo",16,NULL);
-            INSERT INTO menu_schema.MENU_SUBMENU VALUES("The magic soup","Burger Combo",17,NULL);
+<!--            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the day","Burger Combo",10,12);-->
+<!--            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the day","Breakfast + Coffe",9,12);-->
+<!--            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the Chrismas","Burger Combo",7,12);-->
+<!--            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Menu of the Chrismas","Breakfast + Coffe",13,14);-->
+<!--            INSERT INTO menu_schema.MENU_SUBMENU VALUES("Only Wednesday","Burger Combo",16,NULL);-->
+<!--            INSERT INTO menu_schema.MENU_SUBMENU VALUES("The magic soup","Burger Combo",17,NULL);-->
 
         </sql>
         <rollback>

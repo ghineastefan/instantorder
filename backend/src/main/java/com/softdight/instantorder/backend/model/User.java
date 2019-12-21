@@ -1,5 +1,6 @@
 package com.softdight.instantorder.backend.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -14,6 +15,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @ApiModelProperty(required = false, hidden = true)
     private Long id;
 
     @Column(name = "name")
@@ -33,9 +35,11 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
+    @ApiModelProperty(required = false, hidden = true)
     private Role role;
 
     @Transient
+    @ApiModelProperty(required = false, hidden = true)
     private String token;
 
     public GrantedAuthority getRole() {

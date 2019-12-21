@@ -31,7 +31,7 @@ public class Restaurant extends Descriptable {
     private RestaurantType restaurantTypeId;
 
     @NotNull
-    private BigInteger userId;
+    private Long userId;
 
     @OneToMany(mappedBy = "restaurant", orphanRemoval = true)
     @JsonManagedReference

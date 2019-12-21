@@ -35,12 +35,12 @@ public class CustomExceptionHandler {
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handle(final InstantOrderException ex) {
-        return getResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex);
+        return getResponse(HttpStatus.BAD_REQUEST, ex);
     }
 
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handle(final Exception ex) {
-        return getResponse(HttpStatus.BAD_REQUEST, ex);
+        return getResponse(HttpStatus.INTERNAL_SERVER_ERROR, ex);
     }
 
     private ResponseEntity<ErrorResponse> getResponse(final HttpStatus status, final Exception ex) {
