@@ -2,12 +2,16 @@ package com.softdight.instantorder.backend.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "SUBMENU_RECIPE", catalog = "menu_schema")
 @IdClass(SubMenuRecipeId.class)
 public class SubMenuRecipe {

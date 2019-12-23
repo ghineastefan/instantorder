@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.softdight.instantorder.backend.model.Recipe;
 
 
-public interface RecipeRepository extends JpaRepository<Recipe, String> {
+public interface RecipeRepository extends RestaurantDependentRepository<Recipe> {
 }

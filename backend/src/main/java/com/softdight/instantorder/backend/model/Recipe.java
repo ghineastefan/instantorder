@@ -16,4 +16,13 @@ public class Recipe extends RestaurantDependent {
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private Set<RecipeIngredient> ingredients;
+
+    public Ingredient getIngredientById(String ingredientId){
+        for(RecipeIngredient recipeIngredient : getIngredients()){
+            if(recipeIngredient.getIngredient().getId().equals(ingredientId)){
+                return recipeIngredient.getIngredient();
+            }
+        }
+        return null;
+    }
 }

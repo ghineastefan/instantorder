@@ -17,8 +17,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
-
 @RestController
 @RequestMapping("/public/menu/")
 public class MenuController extends BaseController{
@@ -144,13 +142,79 @@ public class MenuController extends BaseController{
         return createObjDependRestaurant(token,subMenu,subMenuService);
     }
 
-    private Restaurant safeGetRestaurant(String restaurantId) throws Exception {
-        Optional<Restaurant> restaurantResource = restaurantService.findById(restaurantId);
+    @PostMapping("submenu/admin/link-to-menu")
+    @ApiOperation(value = "links a submenu to a menu")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK",response = Menu.class)
+    })
+    public ResponseEntity<?> linkSubMenuToMenu(@ApiParam(example = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnZW9yZ2VvNDU2N0BnbWFpbC5jb20iLCJyb2xlcyI6IlVTRVIiLCJleHAiOjE1Nzc3ODQzOTV9.9t5dwYTLtEDIxGtoNNFNm18dYvRSZ8pK7K_p493nf_HLKS2Xyhrc2llLuDf7WK2ayO6Qw-2woNz9rRxAWLnojQ") @RequestParam String token,
+                                               @ApiParam(example = "menu_test") @RequestParam String menuName,
+                                               @ApiParam(example = "men1") @RequestParam String subMenuName,
+                                               @ApiParam(example = "10") @RequestParam Double price,
+                                               @ApiParam(example = "12") @RequestParam Double sold) throws InstantOrderException {
+        Restaurant restaurant = this.getRestaurantFromToken(token);
+        Menu menu = this.safeGetObjectRestaurantDependent(menuName,restaurant,menuService);
+        SubMenu subMenu = this.safeGetObjectRestaurantDependent(subMenuName,restaurant,subMenuService);
 
-        if(restaurantResource.isEmpty()){
-            throw new Exception("No restaurant with that id");
+        if(menu.getSubmenuById(subMenu.getId()) != null){
+            throw new InstantOrderException(ErrorConstants.OBJECT_ALREADY_EXIST_IN_LIST + " " + subMenuName);
         }
 
-        return restaurantResource.get();
+        MenuSubMenu menuSubMenu = new MenuSubMenu(menu.getId(),subMenu,price,sold);
+
+        menu.getSubMenus().add(menuSubMenu);
+
+        menuService.update(menu);
+
+        return new ResponseEntity<>(menuService.findById(menu.getId()), HttpStatus.OK);
     }
+
+    @PostMapping("recipe/admin/link-to-submenu")
+    @ApiOperation(value = "links a recipe to a submenu. Just the recipe name will be taken into consideration")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK",response = SubMenu.class)
+    })
+    public ResponseEntity<?> linkRecipeToSubmenu(@ApiParam(example = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnZW9yZ2VvNDU2N0BnbWFpbC5jb20iLCJyb2xlcyI6IlVTRVIiLCJleHAiOjE1Nzc3ODQzOTV9.9t5dwYTLtEDIxGtoNNFNm18dYvRSZ8pK7K_p493nf_HLKS2Xyhrc2llLuDf7WK2ayO6Qw-2woNz9rRxAWLnojQ") @RequestParam String token,
+                                                @ApiParam(example = "men1") @RequestParam String submenuName,
+                                                 @RequestBody SubMenuRecipe subMenuRecipe) throws InstantOrderException {
+        Restaurant restaurant = this.getRestaurantFromToken(token);
+        SubMenu subMenu = this.safeGetObjectRestaurantDependent(submenuName,restaurant,subMenuService);
+        Recipe recipe = this.safeGetObjectRestaurantDependent(subMenuRecipe.getRecipe().getName(),restaurant,recipeService);
+
+        if(subMenu.getRecipeById(recipe.getId()) != null){
+            throw new InstantOrderException(ErrorConstants.OBJECT_ALREADY_EXIST_IN_LIST + " " + recipe.getName());
+        }
+
+        SubMenuRecipe subMenuRecipeObj = new SubMenuRecipe(subMenu.getId(),recipe,subMenuRecipe.getCategory(),subMenuRecipe.getIsRequired(),subMenuRecipe.getPrice());
+
+        subMenu.getRecipes().add(subMenuRecipeObj);
+        subMenuService.update(subMenu);
+
+        return new ResponseEntity<>(subMenuService.findById(subMenu.getId()), HttpStatus.OK);
+    }
+
+    @PostMapping("ingredient/admin/link-to-recipe")
+    @ApiOperation(value = "links a recipe to a submenu. Just the recipe name will be taken into consideration")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK",response = SubMenu.class)
+    })
+    public ResponseEntity<?> linkIngredientToRecipe(@ApiParam(example = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJnZW9yZ2VvNDU2N0BnbWFpbC5jb20iLCJyb2xlcyI6IlVTRVIiLCJleHAiOjE1Nzc3ODQzOTV9.9t5dwYTLtEDIxGtoNNFNm18dYvRSZ8pK7K_p493nf_HLKS2Xyhrc2llLuDf7WK2ayO6Qw-2woNz9rRxAWLnojQ") @RequestParam String token,
+                                                 @ApiParam(example = "RecipeTest1") @RequestParam String recipeName,
+                                                 @RequestBody RecipeIngredient recipeIngredient) throws InstantOrderException {
+        Restaurant restaurant = this.getRestaurantFromToken(token);
+        Ingredient ingredient = this.safeGetObject(recipeIngredient.getIngredient().getId(),ingredientService);
+        Recipe recipe = this.safeGetObjectRestaurantDependent(recipeName,restaurant,recipeService);
+
+        if(recipe.getIngredientById(ingredient.getId()) != null){
+            throw new InstantOrderException(ErrorConstants.OBJECT_ALREADY_EXIST_IN_LIST + " " + ingredient.getId());
+        }
+
+        RecipeIngredient recipeIngredientObj = new RecipeIngredient(recipe.getId(),ingredient,recipeIngredient.getQuantity());
+
+        recipe.getIngredients().add(recipeIngredientObj);
+        recipeService.update(recipe);
+
+        return new ResponseEntity<>(recipeService.findById(recipe.getId()), HttpStatus.OK);
+    }
+
 }

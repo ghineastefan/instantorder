@@ -3,11 +3,15 @@ package com.softdight.instantorder.backend.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity()
 @Table(name = "RECIPE_INGREDIENT", schema = "menu_schema", catalog = "menu_schema")
 @IdClass(RecipeIngredientId.class)

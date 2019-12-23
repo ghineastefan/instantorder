@@ -4,7 +4,7 @@ import com.softdight.instantorder.backend.model.Menu;
 
 import java.util.List;
 
-public interface MenuService extends BaseService<Menu>{
+public interface MenuService extends RestaurantDependentService<Menu>{
 
     List<Menu> findAllByRestaurantId(String restaurantId);
 

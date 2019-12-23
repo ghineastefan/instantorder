@@ -26,4 +26,13 @@ public class SubMenu extends RestaurantDependent{
     @OneToMany(mappedBy = "subMenu", cascade = CascadeType.ALL)
     private Set<SubMenuRecipe> recipes;
 
+    public Recipe getRecipeById(String recipeId){
+        for(SubMenuRecipe subMenuRecipe : getRecipes()){
+            if(subMenuRecipe.getRecipe().getId().equals(recipeId)){
+                return subMenuRecipe.getRecipe();
+            }
+        }
+        return null;
+    }
+
 }

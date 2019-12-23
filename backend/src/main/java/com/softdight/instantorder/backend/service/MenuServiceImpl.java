@@ -13,7 +13,7 @@ import java.util.List;
 @Service("menuServiceImpl")
 @Transactional
 @Qualifier("menuService")
-public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuService{
+public class MenuServiceImpl extends RestaurantDependentServiceImpl<Menu> implements MenuService{
 
     private MenuRepository menuRepository;
 
@@ -21,6 +21,7 @@ public class MenuServiceImpl extends BaseServiceImpl<Menu> implements MenuServic
     public MenuServiceImpl(MenuRepository menuRepository){
         this.menuRepository = menuRepository;
         this.baseRepo = menuRepository;
+        this.restaurantDependentRepository = menuRepository;
     }
 
     @Override

@@ -8,6 +8,7 @@ import com.softdight.instantorder.backend.model.Restaurant;
 import com.softdight.instantorder.backend.model.RestaurantDependent;
 import com.softdight.instantorder.backend.model.User;
 import com.softdight.instantorder.backend.service.BaseService;
+import com.softdight.instantorder.backend.service.RestaurantDependentService;
 import com.softdight.instantorder.backend.service.RestaurantService;
 import com.softdight.instantorder.backend.service.UserService;
 import io.jsonwebtoken.Claims;
@@ -90,6 +91,26 @@ public abstract class BaseController {
         baseService.update(obj);
 
         return new ResponseEntity<>(ResponseConstants.OBJECT_UPDATED, HttpStatus.OK);
+    }
+
+    protected <T extends BaseEntity> T safeGetObject(String objId,BaseService<T> baseService) throws InstantOrderException {
+        Optional<T> objResource = baseService.findById(objId);
+
+        if(objResource.isEmpty()){
+            throw new InstantOrderException(ErrorConstants.THIS_OBJECT_ID_IS_NOT_IN_DB + " " + objId);
+        }
+
+        return objResource.get();
+    }
+
+    protected <T extends RestaurantDependent> T safeGetObjectRestaurantDependent(String name, Restaurant restaurant, RestaurantDependentService<T> restaurantDependentService){
+        Optional<T> objResource = restaurantDependentService.findByNameAndRestaurant(name,restaurant);
+
+        if(objResource.isEmpty()){
+            throw new InstantOrderException(ErrorConstants.CANNOT_FIND_THE_OBJECT_WITH_THAT_NAME + " " + name + " " + restaurant.getId());
+        }
+
+        return objResource.get();
     }
 
 }

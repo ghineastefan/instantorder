@@ -33,4 +33,17 @@ public class Menu extends RestaurantDependent {
 
         return subCategories;
     }
+
+    /*
+    * Return the submenu from this menu. If it hasn't have one, returns null
+    * O(n) time complexity
+    * */
+    public SubMenu getSubmenuById(String submenuId){
+        for(MenuSubMenu menuSubMenu : this.getSubMenus()){
+            if(menuSubMenu.getSubmenu().getId().equals(submenuId)){
+                return menuSubMenu.getSubmenu();
+            }
+        }
+        return null;
+    }
 }

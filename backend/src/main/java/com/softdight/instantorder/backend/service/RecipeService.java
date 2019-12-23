@@ -5,5 +5,5 @@ import com.softdight.instantorder.backend.model.Recipe;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 
-public interface RecipeService extends BaseService<Recipe>  {
+public interface RecipeService extends RestaurantDependentService<Recipe>  {
 }

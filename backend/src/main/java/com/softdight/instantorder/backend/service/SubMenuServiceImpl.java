@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 @Service("subMenuServiceImpl")
 @Transactional
 @Qualifier("subMenuService")
-public class SubMenuServiceImpl extends BaseServiceImpl<SubMenu> implements SubMenuService {
+public class SubMenuServiceImpl extends RestaurantDependentServiceImpl<SubMenu> implements SubMenuService {
 
     SubMenuRepository subMenuRepository;
 
@@ -19,5 +19,6 @@ public class SubMenuServiceImpl extends BaseServiceImpl<SubMenu> implements SubM
     public SubMenuServiceImpl(SubMenuRepository subMenuRepository){
         this.subMenuRepository = subMenuRepository;
         this.baseRepo = subMenuRepository;
+        this.restaurantDependentRepository = subMenuRepository;
     }
 }

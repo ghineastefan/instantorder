@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 @Service("recipeServiceImpl")
 @Transactional
 @Qualifier("recipeService")
-public class RecipeServiceImpl extends BaseServiceImpl<Recipe> implements RecipeService {
+public class RecipeServiceImpl extends RestaurantDependentServiceImpl<Recipe> implements RecipeService {
 
     private RecipeRepository recipeRepository;
 
@@ -19,5 +19,6 @@ public class RecipeServiceImpl extends BaseServiceImpl<Recipe> implements Recipe
     public RecipeServiceImpl(RecipeRepository recipeRepository){
         this.recipeRepository = recipeRepository;
         this.baseRepo = recipeRepository;
+        this.restaurantDependentRepository = recipeRepository;
     }
 }
