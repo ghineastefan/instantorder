@@ -38,12 +38,21 @@ public class MenuTemplates {
 //                    "    <tr>\n" +
 //                    "        <th></th>\n" +
 //                    "    </tr>";
+            int MAX_LENGTH = 80;
             for(MenuSubMenu menuSubMenu : menu.getSubMenus()){
+                String line = "{Sub_menu_name}...........................{price}".replace("{Sub_menu_name}",menuSubMenu.getSubmenu().getName())
+                        .replace("{price}",menuSubMenu.getPrice().toString());
+                StringBuffer newLine = new StringBuffer(line);
+                if (line.length() < MAX_LENGTH) {
+                    for(int i =line.length(); i < MAX_LENGTH; i++) {
+                        newLine.insert(line.length()-8, '.');
+                    }
+                }
                 body += ("<tr>\n" +
-                        "        <td><p>{Sub_menu_name}...........................{price}</p></td>\n" +
-                        "    </tr>").replace("{Sub_menu_name}",menuSubMenu.getSubmenu().getName())
-                                .replace("{price}",menuSubMenu.getPrice().toString());
+                        "        <td><p>"+newLine+"</p></td>\n" +
+                        "    </tr>");
             }
+
 //        }
 
 
